@@ -3,7 +3,7 @@ package netutil_test
 import (
 	"fmt"
 
-	"github.com/AdguardTeam/golibs/netutil"
+	"github.com/Potterli20/golibs-fork/netutil"
 )
 
 func ExampleJoinHostPort() {

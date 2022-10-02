@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/AdguardTeam/golibs/netutil"
+	"github.com/Potterli20/golibs-fork/netutil"
 )
 
 func ExampleIPFromReversedAddr() {

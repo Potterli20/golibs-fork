@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/AdguardTeam/golibs/stringutil"
+	"github.com/Potterli20/golibs-fork/stringutil"
 	"github.com/stretchr/testify/assert"
 )
 

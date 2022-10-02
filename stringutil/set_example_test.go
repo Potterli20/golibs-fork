@@ -3,7 +3,7 @@ package stringutil_test
 import (
 	"fmt"
 
-	"github.com/AdguardTeam/golibs/stringutil"
+	"github.com/Potterli20/golibs-fork/stringutil"
 )
 
 func ExampleSet() {

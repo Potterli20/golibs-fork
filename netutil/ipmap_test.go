@@ -4,7 +4,7 @@ import (
 	"net"
 	"testing"
 
-	"github.com/AdguardTeam/golibs/netutil"
+	"github.com/Potterli20/golibs-fork/netutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

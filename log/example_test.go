@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/AdguardTeam/golibs/log"
+	"github.com/Potterli20/golibs-fork/log"
 )
 
 func ExampleOnPanic() {

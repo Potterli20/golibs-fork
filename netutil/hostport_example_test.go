@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/AdguardTeam/golibs/netutil"
+	"github.com/Potterli20/golibs-fork/netutil"
 )
 
 func ExampleHostPort_MarshalText() {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/AdguardTeam/golibs/stringutil"
+	"github.com/Potterli20/golibs-fork/stringutil"
 )
 
 func ExampleAllUnique() {

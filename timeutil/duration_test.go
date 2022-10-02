@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AdguardTeam/golibs/testutil"
-	"github.com/AdguardTeam/golibs/timeutil"
+	"github.com/Potterli20/golibs-fork/testutil"
+	"github.com/Potterli20/golibs-fork/timeutil"
 	"github.com/stretchr/testify/assert"
 )
 

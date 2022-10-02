@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/AdguardTeam/golibs/errors"
-	"github.com/AdguardTeam/golibs/stringutil"
+	"github.com/Potterli20/golibs-fork/errors"
+	"github.com/Potterli20/golibs-fork/stringutil"
 )
 
 // Reversed ARPA Addresses

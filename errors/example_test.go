@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/AdguardTeam/golibs/errors"
+	"github.com/Potterli20/golibs-fork/errors"
 )
 
 // Standard Library Examples

@@ -5,7 +5,7 @@ package timeutil
 import (
 	"time"
 
-	"github.com/AdguardTeam/golibs/errors"
+	"github.com/Potterli20/golibs-fork/errors"
 )
 
 // Day is the duration of one day.

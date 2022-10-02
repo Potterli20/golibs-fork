@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/AdguardTeam/golibs/errors"
+	"github.com/Potterli20/golibs-fork/errors"
 )
 
 // ipArr is a representation of an IP address as an array of bytes.
