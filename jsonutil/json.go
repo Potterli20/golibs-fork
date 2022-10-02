@@ -9,7 +9,7 @@ import (
 
 // JSON object
 type JSON struct {
-	m map[string]interface{}
+	m map[string]any
 }
 
 // Exists returns TRUE if a key was specified in JSON source data
@@ -20,11 +20,13 @@ func (j *JSON) Exists(key string) bool {
 
 // DecodeObject JSON data into a Go object and map-object
 // A Go object has no method to check if the property was actually specified in JSON or not,
-//  but a map-object provides this functionality.
+//
+//	but a map-object provides this functionality.
+//
 // Note: not suitable for a large data
 // obj: target object
 // r: input data (reader object)
-func DecodeObject(obj interface{}, r io.ReadCloser) (*JSON, error) {
+func DecodeObject(obj any, r io.ReadCloser) (*JSON, error) {
 	data, err := io.ReadAll(r)
 	if err != nil {
 		return nil, err
@@ -36,7 +38,7 @@ func DecodeObject(obj interface{}, r io.ReadCloser) (*JSON, error) {
 // DecodeObjectBuffer - parse JSON data into a Go object and map-object
 // obj: target object
 // data: input data
-func DecodeObjectBuffer(obj interface{}, data []byte) (*JSON, error) {
+func DecodeObjectBuffer(obj any, data []byte) (*JSON, error) {
 	reader := strings.NewReader(string(data))
 	err := ejson.NewDecoder(reader).Decode(obj)
 	if err != nil {
@@ -50,7 +52,7 @@ func DecodeObjectBuffer(obj interface{}, data []byte) (*JSON, error) {
 // data: input data
 func DecodeBuffer(data []byte) (*JSON, error) {
 	j := JSON{}
-	j.m = make(map[string]interface{})
+	j.m = make(map[string]any)
 	err := ejson.Unmarshal(data, &j.m)
 	if err != nil {
 		return nil, err
