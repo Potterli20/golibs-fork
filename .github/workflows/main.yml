@@ -19,7 +19,6 @@ jobs:
           go mod tidy -compat=1.19
           gofmt -w -r 'interface{} -> any' .
           go mod download
-          go  get -u
 
 
       - name: Git push 
