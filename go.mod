@@ -3,7 +3,7 @@ module github.com/Potterli20/golibs-fork
 go 1.19
 
 require (
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.1
 	golang.org/x/net v0.1.0
 )
 
