@@ -191,7 +191,7 @@ func goroutineID() uint64 {
 
 // Construct a log message and write it
 // TIME PID#GOID [LEVEL] FUNCNAME(): TEXT
-func writeLog(levelStr string, funcName string, format string, args ...any) {
+func writeLog(levelStr, funcName, format string, args ...any) {
 	var buf strings.Builder
 
 	if atomic.LoadUint32(&level) >= uint32(DEBUG) {
