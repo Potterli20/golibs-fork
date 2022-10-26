@@ -86,9 +86,7 @@ func GetLevel() (l Level) {
 
 // These constants are the same as in the standard package "log".
 //
-// See the output of:
-//
-//	go doc log.Ldate
+// See the documentation for [log.Ldate], etc.
 const (
 	Ldate = 1 << iota
 	Ltime

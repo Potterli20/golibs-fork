@@ -47,25 +47,27 @@ func (f SubnetSetFunc) Contains(ip net.IP) (ok bool) { return f(ip) }
 
 // Optimized Implementations Of Some Commonly Used Sets Of Networks
 
-// IsLocallyServed checks if ip belongs to any network defined by RFC 6303:
+// IsLocallyServed checks if ip belongs to any network defined by [RFC 6303]:
 //
 //	10.0.0.0/8
-//	172.16.0.0/12
-//	192.168.0.0/16
 //	127.0.0.0/8
 //	169.254.0.0/16
+//	172.16.0.0/12
 //	192.0.2.0/24
+//	192.168.0.0/16
 //	198.51.100.0/24
 //	203.0.113.0/24
 //	255.255.255.255/32
 //
 //	::/128
 //	::1/128
-//	fe80::/10
 //	2001:db8::/32
 //	fd00::/8
+//	fe80::/10
 //
-// It may also be used as a SubnetSetFunc.
+// It may also be used as a [SubnetSetFunc].
+//
+// [RFC 6303]: https://datatracker.ietf.org/doc/html/rfc6303
 func IsLocallyServed(ip net.IP) (ok bool) {
 	if ip == nil {
 		return false
@@ -81,9 +83,11 @@ func IsLocallyServed(ip net.IP) (ok bool) {
 }
 
 // isLocallyServedV6 returns true if ip belongs to at least one of networks
-// listed in RFC 6303.  The ip is expected to be a valid IPv6.
+// listed in [RFC 6303].  The ip is expected to be a valid IPv6.
 //
-// See go doc IsLocallyServed.
+// See also [IsLocallyServed].
+//
+// [RFC 6303]: https://datatracker.ietf.org/doc/html/rfc6303
 func isLocallyServedV6(ip net.IP) (ok bool) {
 	switch ip[0] {
 	case 0x00:
@@ -99,9 +103,11 @@ func isLocallyServedV6(ip net.IP) (ok bool) {
 }
 
 // isLocallyServedV4 returns true if ip belongs to at least one of networks
-// listed in RFC 6303.  The ip is expected to be a valid IPv4.
+// listed in [RFC 6303].  The ip is expected to be a valid IPv4.
 //
-// See go doc IsLocallyServed.
+// See also [IsLocallyServed].
+//
+// [RFC 6303]: https://datatracker.ietf.org/doc/html/rfc6303
 func isLocallyServedV4(ip net.IP) (ok bool) {
 	switch ip[0] {
 	case 10, 127:
@@ -164,7 +170,7 @@ func isLocallyServedV4(ip net.IP) (ok bool) {
 // See https://www.iana.org/assignments/iana-ipv4-special-registry and
 // https://www.iana.org/assignments/iana-ipv6-special-registry.
 //
-// It may also be used as a SubnetSetFunc.
+// It may also be used as a [SubnetSetFunc].
 func IsSpecialPurpose(ip net.IP) (ok bool) {
 	if ip == nil {
 		return false
@@ -183,7 +189,7 @@ func IsSpecialPurpose(ip net.IP) (ok bool) {
 // from special-purpose address registries.  The ip is expected to be a valid
 // IPv6.
 //
-// See go doc IsSpecialPurpose.
+// See also [IsSpecialPurpose].
 func isSpecialPurposeV6(ip net.IP) (ok bool) {
 	switch ip[0] {
 	case 0x00:
@@ -208,7 +214,7 @@ func isSpecialPurposeV6(ip net.IP) (ok bool) {
 // from special-purpose address registries.  The ip is expected to be a valid
 // IPv4.
 //
-// See go doc IsSpecialPurpose.
+// See also [IsSpecialPurpose].
 func isSpecialPurposeV4(ip net.IP) (ok bool) {
 	switch ip[0] {
 	case 0:

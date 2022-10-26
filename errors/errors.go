@@ -152,7 +152,7 @@ func (err *Pair) Unwrap() (unwrapped error) {
 // This function requires that there be only ONE error named "err" in the
 // function and that it is always the one that is returned.  Example (Bad)
 // provides an example of the incorrect usage of WithDeferred.
-func WithDeferred(returned error, deferred error) (result error) {
+func WithDeferred(returned, deferred error) (result error) {
 	if deferred == nil {
 		return returned
 	}
@@ -224,21 +224,21 @@ func (err *listError) Unwrap() (unwrapped error) {
 // The primary use case for this function is to simplify code like this:
 //
 //	func (f *foo) doStuff(s string) (err error) {
-//	        defer func() {
-//	                if err != nil {
-//	                        err = fmt.Errorf("bad foo %q: %w", s, err)
-//	                }
-//	        }()
+//		defer func() {
+//			if err != nil {
+//				err = fmt.Errorf("bad foo %q: %w", s, err)
+//			}
+//		}()
 //
-//	        // …
+//		// …
 //	}
 //
 // Instead, write:
 //
 //	func (f *foo) doStuff(s string) (err error) {
-//	        defer func() { err = errors.Annotate(err, "bad foo %q: %w", s) }()
+//		defer func() { err = errors.Annotate(err, "bad foo %q: %w", s) }()
 //
-//	        // …
+//		// …
 //	}
 //
 // # At The End Of Functions
@@ -246,21 +246,21 @@ func (err *listError) Unwrap() (unwrapped error) {
 // Another possible use case is to simplify final checks like this:
 //
 //	func (f *foo) doStuff(s string) (err error) {
-//	        // …
+//		// …
 //
-//	        if err != nil {
-//	                return fmt.Errorf("doing stuff with %s: %w", s, err)
-//	        }
+//		if err != nil {
+//			return fmt.Errorf("doing stuff with %s: %w", s, err)
+//		}
 //
-//	        return nil
+//		return nil
 //	}
 //
 // Instead, you could write:
 //
 //	func (f *foo) doStuff(s string) (err error) {
-//	        // …
+//		// …
 //
-//	        return errors.Annotate(err, "doing stuff with %s: %w", s)
+//		return errors.Annotate(err, "doing stuff with %s: %w", s)
 //	}
 //
 // # Warning

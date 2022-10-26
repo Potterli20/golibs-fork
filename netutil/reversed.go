@@ -155,7 +155,7 @@ func IPFromReversedAddr(arpa string) (ip net.IP, err error) {
 // DNS (PTR) record lookups.  This is a modified version of function ReverseAddr
 // from package github.com/miekg/dns package that accepts an IP.
 //
-// Any error returned will have the underlying type of *AddrError.
+// Any error returned will have the underlying type of [*AddrError].
 func IPToReversedAddr(ip net.IP) (arpa string, err error) {
 	const dot = "."
 
@@ -331,7 +331,7 @@ func subnetFromReversedV6(arpa string) (subnet *net.IPNet, err error) {
 // SubnetFromReversedAddr tries to convert a reversed ARPA address to an IP
 // network.  arpa can be domain name or an FQDN.
 //
-// Any error returned will have the underlying type of *AddrError.
+// Any error returned will have the underlying type of [*AddrError].
 func SubnetFromReversedAddr(arpa string) (subnet *net.IPNet, err error) {
 	arpa = strings.TrimSuffix(arpa, ".")
 	err = ValidateDomainName(arpa)
