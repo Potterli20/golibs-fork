@@ -122,3 +122,16 @@ func ExampleIPNetToPrefixNoMapped() {
 	// "1.2.3.0/24", error: <nil>
 	// "1234::/72", error: <nil>
 }
+
+func ExampleNetAddrToAddrPort() {
+	tcpAddr := &net.TCPAddr{
+		// NOTE: This produces a 16-byte form of the IPv4 address.
+		IP:   net.IPv4(1, 2, 3, 4),
+		Port: 56789,
+	}
+
+	fmt.Println(netutil.NetAddrToAddrPort(tcpAddr))
+
+	// Output:
+	// 1.2.3.4:56789
+}

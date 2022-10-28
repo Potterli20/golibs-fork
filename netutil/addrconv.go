@@ -122,3 +122,36 @@ func IPNetToPrefixNoMapped(subnet *net.IPNet) (p netip.Prefix, err error) {
 
 	return IPNetToPrefix(subnet, AddrFamilyIPv6)
 }
+
+// NetAddrToAddrPort converts a [net.Addr] into a [netip.AddrPort] if it can.
+// Otherwise, it returns netip.AddrPort{}.  addr must not be nil.
+//
+// Since [net.TCPAddr.AddrPort] and [net.UDPAddr.AddrPort] perform a naïve
+// conversion of their [net.IP] values into [netip.Addr] ones, that does not
+// take mapped addresses into account, IPv4-mapped IPv6 addresses are assumed to
+// actually be IPv4 addresses and are normalized into them.
+//
+// Those who want a conversion without this normalization may use:
+//
+//	if ap, ok := addr.(interface{ AddrPort() (a netip.AddrPort) }); ok {
+//			return ap.AddrPort()
+//	}
+//
+// See https://github.com/golang/go/issues/53607.
+func NetAddrToAddrPort(addr net.Addr) (addrPort netip.AddrPort) {
+	if ap, ok := addr.(interface{ AddrPort() (a netip.AddrPort) }); ok {
+		addrPort = ap.AddrPort()
+		ip := addrPort.Addr()
+		if ip.Is4In6() {
+			// net.TCPAddr.AddrPort and net.UDPAddr.AddrPort perform a naive
+			// conversion of net.IP into netip.Addr that does not take the
+			// mapped addresses into account.  Those are more often than not
+			// actually just IPv4 addresses.
+			//
+			// See https://github.com/golang/go/issues/53607.
+			addrPort = netip.AddrPortFrom(netip.AddrFrom4(ip.As4()), addrPort.Port())
+		}
+	}
+
+	return addrPort
+}
