@@ -2,6 +2,7 @@ package netutil
 
 import (
 	"net"
+	"net/netip"
 )
 
 // Set Of Subnets
@@ -80,6 +81,15 @@ func IsLocallyServed(ip net.IP) (ok bool) {
 	} else {
 		return isLocallyServedV4(ip4)
 	}
+}
+
+// IsLocallyServedAddr is like [IsLocallyServed] but for [netip.Addr].
+func IsLocallyServedAddr(ip netip.Addr) (ok bool) {
+	if ip.Is4() {
+		return isLocallyServedV4(ip.AsSlice())
+	}
+
+	return isLocallyServedV6(ip.AsSlice())
 }
 
 // isLocallyServedV6 returns true if ip belongs to at least one of networks
@@ -183,6 +193,15 @@ func IsSpecialPurpose(ip net.IP) (ok bool) {
 	} else {
 		return isSpecialPurposeV4(ip4)
 	}
+}
+
+// IsSpecialPurposeAddr is like [IsSpecialPurpose] but for [netip.Addr].
+func IsSpecialPurposeAddr(ip netip.Addr) (ok bool) {
+	if ip.Is4() {
+		return isSpecialPurposeV4(ip.AsSlice())
+	}
+
+	return isSpecialPurposeV6(ip.AsSlice())
 }
 
 // isSpecialPurposeV6 returns true if ip belongs to at least one of networks

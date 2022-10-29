@@ -120,6 +120,18 @@ func Subdomains(domain string) (sub []string) {
 	return sub
 }
 
+// IsSubdomain returns true if domain is a subdomain of top.
+func IsSubdomain(domain, top string) (ok bool) {
+	return len(domain) > len(top)+1 &&
+		strings.HasSuffix(domain, top) &&
+		domain[len(domain)-len(top)-1] == '.'
+}
+
+// IsImmediateSubdomain returns true if domain is an immediate subdomain of top.
+func IsImmediateSubdomain(domain, top string) (ok bool) {
+	return IsSubdomain(domain, top) && strings.Count(domain, ".") == strings.Count(top, ".")+1
+}
+
 // ValidateMAC returns an error if mac is not a valid EUI-48, EUI-64, or
 // 20-octet InfiniBand link-layer address.
 //
